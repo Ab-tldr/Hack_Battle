@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Proximity Finder</title>
+    <script>
+        // Function to retrieve the GPS location of the user's device
+        function getUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    // Send the user's location to the backend for comparison
+                    fetch('/compare-locations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            lat: position.coords.latitude,
+                            lon: position.coords.longitude
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Display the result, i.e., which device is closest
+                        document.getElementById('result').innerHTML = `Closest device: ${data.closestDevice}`;
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            } else {
+                alert('Geolocation is not supported in your browser.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Device Proximity Finder</h1>
+    <button onclick="getUserLocation()">Find Closest Device</button>
+    <p id="result"></p>
+</body>
+</html>
