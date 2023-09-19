@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Medical Form</title>
+    <style>
+        body {
+            background-image: url('ambulance.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 400px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="form-container">
+        <h1>Emergency Medical Form</h1>
+        <form id="medical-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            
+            <label for="symptoms">Symptoms:</label>
+            <textarea id="symptoms" name="symptoms" rows="4" required></textarea>
+            
+            <button type="button" id="submit-button">Submit</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="result-container">
+        <h1>First Aid</h1>
+        <p>Nearest Ambulance Location: [Provide the nearest ambulance location information here]</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formContainer = document.getElementById('form-container');
+            const resultContainer = document.getElementById('result-container');
+            const submitButton = document.getElementById('submit-button');
+            const medicalForm = document.getElementById('medical-form');
+
+            submitButton.addEventListener('click', function() {
+                // Here, you can process the form data if needed.
+                // For simplicity, we will just show/hide the form and result sections.
+                formContainer.classList.add('hidden');
+                resultContainer.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
