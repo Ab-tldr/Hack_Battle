@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Device Proximity Finder</title>
-    <script>
-        // Function to retrieve the GPS location of the user's device
-        function getUserLocation() {
-            if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    // Send the user's location to the backend for comparison
-                    fetch('/compare-locations', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            lat: position.coords.latitude,
-                            lon: position.coords.longitude
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Display the result, i.e., which device is closest
-                        document.getElementById('result').innerHTML = `Closest device: ${data.closestDevice}`;
-                    })
-                    .catch(error => console.error('Error:', error));
-                });
-            } else {
-                alert('Geolocation is not supported in your browser.');
-            }
+    <title>Amber - Saving Lives</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background-color: #bbd6d6;
+            
         }
-    </script>
+        .header {
+            background-color: #647374;
+            color: rgb(237, 234, 234);
+            padding: 20px;
+            font-size: 35px;
+        }
+        .content {
+            padding: 40px;
+            font-size: 30px;
+            color: #252424
+        }
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #bb514a;
+            color: rgb(233, 232, 232);
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .img {
+            
+            width:200px;
+            height:200px;
+            margin-left:575px;
+        }
+        .center{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 170%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Device Proximity Finder</h1>
-    <button onclick="getUserLocation()">Find Closest Device</button>
-    <p id="result"></p>
+    <div class="header">
+        AMBER
+    </div>
+    <br><br><br>
+    <div class="img">
+        <img src = "images/siren.jpg" alt = "Siren" class ="center">
+    </div>
+    <section id = "options">
+    <div class="content">
+        <p>A step towards saving lives</p>
+        <a href="about.html" class="button">About</a>
+        <a href="ambulance.html" class="button">Ambulance</a>
+        <a href="firstaid.html" class="button">First Aid</a>
+    </div>
+    </body></section>
 </body>
 </html>
